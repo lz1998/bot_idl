@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "net.lz1998.botidl";
+
+// 基本类型
+message User{
+    int64 id = 1;
+    string nickname = 2;
+}
+message Group{
+    int64 id = 1;
+    string name = 2;
+}

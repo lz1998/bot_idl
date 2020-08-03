@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option java_package = "net.lz1998.botidl";
+
+import "base.proto";
+
+
+// EVENT
+// 机器人收到 消息/请求/通知 后上报给服务端
+// 事件 是被动德发生的
+enum EventType{
+    PRIVATE_MESSAGE = 0;
+    GROUP_MESSAGE = 1;
+}
+message BotEvent{
+    int64 botId = 1;
+    EventType eventType = 2;
+    oneof event{
+        GroupMessage groupMessage = 101;
+        PrivateMessage privateMessage = 102;
+    }
+}
+
+
+// 收到群消息
+message GroupMessage{
+    int64 groupId = 1;
+    User user = 2;
+    string message = 3;
+}
+
+// 收到私聊消息
+message PrivateMessage{
+    User user = 1;
+    string message = 2;
+}
+
+
+

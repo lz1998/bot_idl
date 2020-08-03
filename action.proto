@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option java_package = "net.lz1998.botidl";
+
+import "base.proto";
+
+// ACTION
+// 机器人可以主动执行的动作
+enum ActionType{
+    SEND_PRIVATE_MESSAGE = 0;
+    SEND_GROUP_MESSAGE = 1;
+    GET_GROUP_INFO = 2;
+}
+
+message BotAction{
+    int64 botId = 1;
+    ActionType actionType = 2;
+    oneof action{
+        SendPrivateMessageReq sendPrivateMessageReq = 101;
+        SendGroupMessageReq sendGroupMessageReq = 102;
+        GetGroupInfoReq getGroupInfoReq = 103;
+    }
+}
+
+
+
+// 发送私聊信息
+message SendPrivateMessageReq{
+    int64 userId = 1;
+    string message = 2;
+    string echo = 255;
+}
+message SendPrivateMessageResp{
+    string echo = 255;
+}
+
+// 发送群聊信息
+message SendGroupMessageReq{
+    int64 groupId = 1;
+    string message = 2;
+    string echo = 255;
+}
+message SendGroupMessageResp{
+    string echo = 255;
+}
+
+// 获取群信息
+message GetGroupInfoReq{
+    int64 groupId = 1;
+    string echo = 255;
+}
+message GetGroupInfoResp{
+    Group group = 1;
+    string echo = 255;
+}
