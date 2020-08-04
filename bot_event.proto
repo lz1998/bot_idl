@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option java_package = "net.lz1998.botidl";
 
-import "base.proto";
+import "bot_base.proto";
 
 
 // EVENT
@@ -12,7 +12,7 @@ enum EventType{
     PRIVATE_MESSAGE = 0;
     GROUP_MESSAGE = 1;
 }
-message BotEvent{
+message Event{
     int64 botId = 1;
     EventType eventType = 2;
     oneof event{
